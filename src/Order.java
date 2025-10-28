@@ -32,12 +32,9 @@ public class Order {
             return false;
         }
         for (int i = 0; i < productBasket.length; i++) {
-            Product product1 = productBasket[i];
-            Product product2 = order.productBasket[i];
-            if (product1 == null && product2 != null) return false;
-            if (product1 != null && product2 == null) return false;
-
-            if (product1 != null && !product1.equals(product2)) return false;
+            if (!Objects.equals(productBasket[i], order.productBasket[i])) {
+                return false;
+            }
         }
         return true;
     }
