@@ -18,16 +18,26 @@ public class Order {
     @Override
 
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Order order = (Order) o;
-        if (!Objects.equals(customer, order.customer)) return false;
-        if (productBasket.length != order.productBasket.length) return false;
+        if (!Objects.equals(customer, order.customer)) {
+            return false;
+        }
+        if (productBasket.length != order.productBasket.length) {
+            return false;
+        }
         for (int i = 0; i < productBasket.length; i++) {
             Product product1 = productBasket[i];
             Product product2 = order.productBasket[i];
             if (product1 == null && product2 != null) return false;
             if (product1 != null && product2 == null) return false;
+
+            if (product1 != null && !product1.equals(product2)) return false;
         }
         return true;
     }
